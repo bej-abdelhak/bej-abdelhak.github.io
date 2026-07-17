@@ -1,0 +1,461 @@
+<meta charset="utf-8">
+<title>Abdelhak Bejaoui — Head of Technology / Full-Stack Engineer</title>
+<style>
+  @page { size: A4; margin: 0; }
+
+  :root{
+    --ink:#16243B;          /* deep navy */
+    --ink-soft:#33455F;
+    --gold:#B8963E;
+    --gold-soft:#E7D9AF;
+    --body:#2A3446;
+    --muted:#6A7686;
+    --rule:#DFE4EB;
+    --bg-tint:#F6F7F9;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    background:#8A8F98;
+    font-family:"Segoe UI","Helvetica Neue",Arial,sans-serif;
+    color:var(--body);
+    font-size:9.9pt;
+    line-height:1.44;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    width:210mm;
+    height:296mm;
+    background:#fff;
+    margin:8mm auto;
+    padding:0 14mm 12mm;
+    position:relative;
+    overflow:hidden;
+    break-after:page;
+    page-break-after:always;
+  }
+  .page:last-of-type{ break-after:auto; page-break-after:auto; }
+
+  /* ---------- header band ---------- */
+  .band{
+    background:var(--ink);
+    margin:0 -14mm 5.5mm;
+    padding:6.5mm 14mm 6mm;
+    color:#fff;
+    display:flex;
+    gap:8mm;
+    align-items:center;
+    position:relative;
+  }
+  .band::after{
+    content:"";
+    position:absolute; left:0; right:0; bottom:0;
+    height:2.2mm; background:var(--gold);
+  }
+
+  .photo{
+    width:31mm; height:31mm;
+    border-radius:50%;
+    flex:0 0 auto;
+    object-fit:cover;
+    object-position:center 18%;
+    border:1.1mm solid var(--gold);
+    background:#2B3B57;
+  }
+  .photo-ph{
+    display:flex; align-items:center; justify-content:center;
+    font-size:11pt; letter-spacing:.14em; color:var(--gold-soft);
+    font-weight:600;
+  }
+
+  .idblock{ min-width:0; }
+  .name{
+    font-size:25pt; font-weight:300; letter-spacing:.055em;
+    line-height:1.06; margin:0 0 1.6mm; text-transform:uppercase;
+  }
+  .name b{ font-weight:700; }
+  .role{
+    font-size:10.4pt; letter-spacing:.15em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:3.4mm;
+  }
+  .contact{
+    display:flex; flex-wrap:wrap; gap:1.4mm 4.5mm;
+    font-size:8.7pt; color:#C9D2DF; letter-spacing:.02em;
+  }
+  .contact span{ white-space:nowrap; }
+  .contact b{ color:var(--gold); font-weight:700; margin-inline-end:1.4mm; }
+  .contact i{ color:#5C6A7E; font-style:normal; margin:0 1.2mm; }
+
+  /* ---------- section ---------- */
+  h2{
+    font-size:10.6pt; letter-spacing:.19em; text-transform:uppercase;
+    color:var(--ink); font-weight:700;
+    margin:0 0 2.8mm; padding-bottom:1.4mm;
+    border-bottom:.5mm solid var(--rule);
+    position:relative;
+  }
+  h2::after{
+    content:""; position:absolute; left:0; bottom:-.5mm;
+    width:16mm; height:.5mm; background:var(--gold);
+  }
+  section{ margin-bottom:4.6mm; }
+
+  .lede{ font-size:9.9pt; line-height:1.52; margin:0; text-align:justify; }
+  .lede strong{ color:var(--ink); font-weight:600; }
+
+  /* ---------- experience ---------- */
+  .job{ margin-bottom:4.4mm; padding-left:5.5mm; position:relative; break-inside:avoid; }
+  .job::before{
+    content:""; position:absolute; left:0; top:1.6mm;
+    width:2.1mm; height:2.1mm; border-radius:50%;
+    background:var(--gold); box-shadow:0 0 0 .7mm #fff, 0 0 0 1.1mm var(--gold-soft);
+  }
+  .job::after{
+    content:""; position:absolute; left:.95mm; top:5mm; bottom:-3mm;
+    width:.25mm; background:var(--rule);
+  }
+  .job:last-child::after{ display:none; }
+
+  .job-top{ display:flex; justify-content:space-between; align-items:baseline; gap:4mm; }
+  .job-title{ font-size:11pt; font-weight:700; color:var(--ink); letter-spacing:.01em; }
+  .job-date{
+    font-size:8.3pt; font-weight:700; color:var(--gold);
+    letter-spacing:.09em; white-space:nowrap; text-transform:uppercase;
+  }
+  .job-org{ font-size:9.3pt; color:var(--muted); margin:.5mm 0 2mm; font-style:italic; }
+  .job ul{ margin:0; padding-left:4.2mm; }
+  .job li{ margin-bottom:.9mm; line-height:1.45; }
+  .job li::marker{ color:var(--gold); }
+  .job li b{ color:var(--ink); font-weight:600; }
+
+  /* ---------- skills ---------- */
+  .skill-row{
+    display:grid; grid-template-columns:31mm 1fr;
+    gap:3.5mm; padding:1.3mm 0;
+    border-bottom:.25mm dotted var(--rule);
+    break-inside:avoid;
+  }
+  .skill-row:last-child{ border-bottom:none; }
+  .skill-label{
+    font-size:8.6pt; font-weight:700; color:var(--ink);
+    letter-spacing:.07em; text-transform:uppercase; padding-top:.6mm;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:1.5mm; }
+  .chip{
+    font-size:8.5pt; padding:.9mm 2.2mm; border-radius:1mm;
+    background:var(--bg-tint); border:.2mm solid var(--rule); color:var(--ink-soft);
+    white-space:nowrap;
+  }
+  .chip.hot{ background:#FBF6E8; border-color:var(--gold-soft); color:#7A6425; font-weight:600; }
+
+  /* ---------- highlight ---------- */
+  .feature{
+    background:var(--bg-tint); border-left:1.2mm solid var(--gold);
+    padding:3mm 4.5mm; break-inside:avoid;
+  }
+  .feature h3{
+    margin:0 0 .8mm; font-size:10.4pt; color:var(--ink);
+    letter-spacing:.04em; font-weight:700;
+  }
+  .feature .sub{ font-size:8.6pt; color:var(--muted); margin-bottom:2.4mm; font-style:italic; }
+  .feature p{ margin:0 0 2.4mm; line-height:1.5; }
+  .metrics{ display:flex; flex-wrap:wrap; gap:2mm 7mm; }
+  .metric b{
+    display:block; font-size:14pt; color:var(--gold);
+    font-weight:700; line-height:1.1;
+  }
+  .metric span{
+    font-size:7.6pt; color:var(--muted);
+    letter-spacing:.09em; text-transform:uppercase;
+  }
+
+  /* ---------- two-up ---------- */
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:9mm; }
+
+  .edu{ margin-bottom:2.6mm; break-inside:avoid; }
+  .edu-title{ font-size:9.8pt; font-weight:700; color:var(--ink); line-height:1.3; }
+  .edu-meta{ font-size:8.4pt; color:var(--gold); font-weight:700; letter-spacing:.07em; margin:.6mm 0 .8mm; }
+  .edu-org{ font-size:8.9pt; color:var(--muted); }
+
+  .lang{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:1.6mm 0; border-bottom:.25mm dotted var(--rule);
+  }
+  .lang b{ color:var(--ink); font-weight:600; font-size:9.8pt; }
+  .lang span{ font-size:8.6pt; color:var(--muted); letter-spacing:.05em; }
+
+  .foot{
+    position:absolute; left:14mm; right:14mm; bottom:6mm;
+    display:flex; justify-content:space-between;
+    font-size:7.4pt; color:#9AA4B2; letter-spacing:.1em;
+    text-transform:uppercase;
+    border-top:.25mm solid var(--rule); padding-top:2mm;
+  }
+
+  @media print{
+    body{ background:#fff; }
+    .page{ margin:0; box-shadow:none; }
+  }
+</style>
+
+<!-- ============================ PAGE 1 ============================ -->
+<div class="page">
+
+  <div class="band">
+    <img class="photo" src="photo.jpg" alt="Abdelhak Bejaoui"
+         onerror="this.outerHTML='&lt;div class=&quot;photo photo-ph&quot;&gt;AB&lt;/div&gt;'">
+    <div class="idblock">
+      <div class="name">Abdelhak <b>Bejaoui</b></div>
+      <div class="role">Head of Technology · Full-Stack Engineer</div>
+      <div class="contact">
+        <span><b>T</b>+966 53 613 9108<i>·</i>+966 56 426 9056</span>
+        <span><b>E</b>bej.abdelhak@gmail.com</span>
+        <span><b>L</b>Riyadh, Saudi Arabia</span>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2>Profile</h2>
+    <p class="lede">
+      Technology leader and hands-on full-stack engineer with <strong>16+ years</strong> delivering
+      production software end to end — database schema, API, web, mobile and the interface itself.
+      I lead the technology department at <strong>Maham Group</strong>, where I own the architecture
+      and delivery of MAHAM EXPO: a seven-portal exhibition and event-management platform on a
+      Laravel API, React portals and an Expo/React Native app, live for merchants, investors and
+      sponsors across Saudi Arabia. My route into engineering ran through <strong>art direction and
+      UX/UI design</strong>, and it still shapes everything I ship. I build with <strong>AI as part
+      of the toolchain, not as an experiment</strong> — Claude Code, Cursor and GitHub Copilot are
+      in my daily loop, and I design the agent workflows and review gates that keep their output
+      production-grade.
+    </p>
+  </section>
+
+  <section>
+    <h2>Experience</h2>
+
+    <div class="job">
+      <div class="job-top">
+        <div class="job-title">Head of Technology (CTO)</div>
+        <div class="job-date">2024 — Present</div>
+      </div>
+      <div class="job-org">Maham Group — Riyadh, Saudi Arabia</div>
+      <ul>
+        <li>Own the full architecture and delivery of <b>MAHAM EXPO</b> — a production platform of
+            seven portals (admin, investor, merchant, sponsor, public, mobile, landing) on a single
+            pnpm monorepo, backed by a Laravel 12 API and a MySQL/Redis core.</li>
+        <li>Designed and built the <b>core business cycle</b> end to end: space booking → approval →
+            contract generation → dual-signature → invoicing with VAT → payment → settlement, plus a
+            tripartite brokerage flow for investor-owned events.</li>
+        <li>Built a bespoke <b>permission-based RBAC</b> layer with a dedicated permissions service,
+            sovereign finance paths and a CEO approval gate, and integrated <b>payments and
+            compliance</b> — EDFA hosted checkout with idempotent webhooks, ZATCA e-invoicing with
+            QR, and Odoo ERP synchronisation across accounts, journal entries and invoices.</li>
+        <li>Shipped <b>AI-native features</b> into the product — OCR-based KYC, Whisper voice
+            commands for executives, AI lead scoring and 12-language auto-translation via a
+            Claude → Gemini fallback chain.</li>
+        <li>Established the engineering practice from zero — <b>monorepo consolidation</b>,
+            20 GitHub Actions workflows for path-triggered CI/CD, scope guards, CODEOWNERS and
+            pre-commit secret scanning, replacing manual server deploys entirely — and lead the
+            team, standards and architecture decisions the department runs on.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <div class="job-title">Director of Media Department</div>
+        <div class="job-date">2012 — 2020</div>
+      </div>
+      <div class="job-org">Preservation Center for Educational &amp; Pedagogical Consultations — Saudi Arabia</div>
+      <ul>
+        <li>Led the media department for <b>eight years</b>, owning creative direction, digital
+            production and the department's technical output.</li>
+        <li>Directed brand, print and motion work end to end while building and maintaining the web
+            presence in-house — managing the team, the pipeline and delivery against fixed
+            institutional deadlines.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <div class="job-title">Full-Stack Developer &amp; UX/UI Designer</div>
+        <div class="job-date">2008 — 2012</div>
+      </div>
+      <div class="job-org">Codec — Tunisia</div>
+      <ul>
+        <li>Four years building client web applications front to back, from interface design and
+            prototyping through to server-side delivery.</li>
+        <li>Owned the <b>UX/UI</b> for delivered projects — research, wireframes, visual design and
+            the front-end implementation.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <div class="foot">
+    <span>Abdelhak Bejaoui — Curriculum Vitae</span>
+    <span>Page 1 / 2</span>
+  </div>
+</div>
+
+<!-- ============================ PAGE 2 ============================ -->
+<div class="page">
+
+  <section style="padding-top:6mm">
+    <h2>Technical Skills</h2>
+
+    <div class="skill-row">
+      <div class="skill-label">Languages</div>
+      <div class="chips">
+        <span class="chip">PHP 8.3</span><span class="chip">TypeScript</span>
+        <span class="chip">JavaScript (ES2023)</span><span class="chip">SQL</span>
+        <span class="chip">Python</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
+        <span class="chip">Bash</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">Backend</div>
+      <div class="chips">
+        <span class="chip">Laravel 12</span><span class="chip">Eloquent ORM</span>
+        <span class="chip">REST API design</span><span class="chip">JWT auth</span>
+        <span class="chip">Custom RBAC</span><span class="chip">WebSockets (Reverb)</span>
+        <span class="chip">Queues &amp; jobs</span><span class="chip">Node.js</span>
+        <span class="chip">Express</span><span class="chip">tRPC</span>
+        <span class="chip">FastAPI</span><span class="chip">PHPUnit</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">Frontend</div>
+      <div class="chips">
+        <span class="chip">React 19</span><span class="chip">Vite</span>
+        <span class="chip">Tailwind CSS v4</span><span class="chip">Zustand</span>
+        <span class="chip">TanStack Query v5</span><span class="chip">Wouter</span>
+        <span class="chip">Framer Motion</span><span class="chip">GSAP</span>
+        <span class="chip">Bootstrap 5</span><span class="chip">jQuery</span>
+        <span class="chip">Playwright</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">Mobile</div>
+      <div class="chips">
+        <span class="chip">React Native</span><span class="chip">Expo / EAS</span>
+        <span class="chip">expo-router</span><span class="chip">Reanimated</span>
+        <span class="chip">Mapbox GL</span><span class="chip">RTL / i18n</span>
+        <span class="chip">App Store &amp; Play delivery</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">Data</div>
+      <div class="chips">
+        <span class="chip">MySQL 8</span><span class="chip">Redis</span>
+        <span class="chip">MongoDB</span><span class="chip">Schema design &amp; migrations</span>
+        <span class="chip">Query optimisation</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">DevOps</div>
+      <div class="chips">
+        <span class="chip">Docker</span><span class="chip">Nginx</span>
+        <span class="chip">GitHub Actions CI/CD</span><span class="chip">Linux VPS</span>
+        <span class="chip">Git</span><span class="chip">pnpm monorepo</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">AI Engineering</div>
+      <div class="chips">
+        <span class="chip hot">Claude / Claude Code</span><span class="chip hot">Cursor</span>
+        <span class="chip hot">GitHub Copilot</span><span class="chip hot">Prompt engineering</span>
+        <span class="chip hot">Multi-agent workflows</span><span class="chip hot">OpenAI (GPT / Whisper / Vision)</span>
+        <span class="chip hot">Google Gemini</span><span class="chip hot">AI-assisted code review</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">Integrations</div>
+      <div class="chips">
+        <span class="chip">EDFA / Glamerapay</span><span class="chip">TAP Payments</span>
+        <span class="chip">ZATCA e-invoicing</span><span class="chip">Odoo ERP</span>
+        <span class="chip">WhatsApp Business API</span><span class="chip">Msegat SMS</span>
+        <span class="chip">Authentica OTP</span><span class="chip">OneSignal</span>
+        <span class="chip">Nafath · Qiwa · GOSI · Mudad</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">Design</div>
+      <div class="chips">
+        <span class="chip">Figma</span><span class="chip">Adobe XD</span>
+        <span class="chip">Photoshop</span><span class="chip">Illustrator</span>
+        <span class="chip">After Effects</span><span class="chip">Premiere Pro</span>
+        <span class="chip">Design systems</span><span class="chip">Brand identity</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Selected Work</h2>
+    <div class="feature">
+      <h3>MAHAM EXPO — Exhibition &amp; Event Management Platform</h3>
+      <div class="sub">Architect and lead engineer · Laravel 12 · React 19 · Expo · Docker · mahamexpo.sa</div>
+      <p>
+        An operator-model platform running live in Saudi Arabia. Investors build and own venues,
+        merchants book and contract for spaces, sponsors buy packages — and Maham operates, approves
+        and settles every relationship in between. One monorepo, seven front-ends, two Laravel
+        services, containerised behind Nginx and deployed entirely through CI.
+      </p>
+      <div class="metrics">
+        <div class="metric"><b>7</b><span>Portals</span></div>
+        <div class="metric"><b>660</b><span>API routes</span></div>
+        <div class="metric"><b>355</b><span>Admin pages</span></div>
+        <div class="metric"><b>126</b><span>Mobile screens</span></div>
+        <div class="metric"><b>131</b><span>DB tables</span></div>
+        <div class="metric"><b>12</b><span>Languages</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cols">
+    <section>
+      <h2>Education</h2>
+
+      <div class="edu">
+        <div class="edu-title">Computer Science</div>
+        <div class="edu-meta">2004 — 2008</div>
+        <div class="edu-org">Lycée Mixte Menzel Bourguiba — Tunisia</div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-title">Graphic &amp; Web Design, UX/UI</div>
+        <div class="edu-meta">2009 — 2012 · Self-directed</div>
+        <div class="edu-org">Independent study and bootcamp coursework</div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-title">Full-Stack Engineering</div>
+        <div class="edu-meta">2013 — Present · Continuous</div>
+        <div class="edu-org">Self-directed, ongoing — to production depth</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Languages</h2>
+      <div class="lang"><b>Arabic</b><span>Native</span></div>
+      <div class="lang"><b>French</b><span>Fluent</span></div>
+      <div class="lang"><b>English</b><span>Professional</span></div>
+    </section>
+  </div>
+
+  <div class="foot">
+    <span>+966 53 613 9108 · +966 56 426 9056 · bej.abdelhak@gmail.com</span>
+    <span>Page 2 / 2</span>
+  </div>
+</div>

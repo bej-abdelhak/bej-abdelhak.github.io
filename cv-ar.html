@@ -1,0 +1,402 @@
+<meta charset="utf-8">
+<title>عبد الحق البجاوي — مدير قسم التقنية / مطوّر Full-Stack</title>
+<style>
+  @page { size: A4; margin: 0; }
+
+  :root{
+    --ink:#16243B;
+    --ink-soft:#33455F;
+    --gold:#B8963E;
+    --gold-soft:#E7D9AF;
+    --body:#2A3446;
+    --muted:#6A7686;
+    --rule:#DFE4EB;
+    --bg-tint:#F6F7F9;
+  }
+
+  *{ box-sizing:border-box; }
+
+  body{
+    margin:0;
+    direction:rtl;
+    background:#8A8F98;
+    font-family:"Segoe UI","Tahoma","Sakkal Majalla",Arial,sans-serif;
+    color:var(--body);
+    font-size:10.4pt;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .page{
+    width:210mm;
+    height:296mm;
+    background:#fff;
+    margin:8mm auto;
+    padding:0 14mm 12mm;
+    position:relative;
+    overflow:hidden;
+    break-after:page;
+    page-break-after:always;
+  }
+  .page:last-of-type{ break-after:auto; page-break-after:auto; }
+
+  /* ---------- header band ---------- */
+  .band{
+    background:var(--ink);
+    margin:0 -14mm 6mm;
+    padding:6.5mm 14mm 6mm;
+    color:#fff;
+    display:flex;
+    gap:8mm;
+    align-items:center;
+    position:relative;
+  }
+  .band::after{
+    content:""; position:absolute; left:0; right:0; bottom:0;
+    height:2.2mm; background:var(--gold);
+  }
+
+  .photo{
+    width:31mm; height:31mm; border-radius:50%;
+    flex:0 0 auto; object-fit:cover; object-position:center 18%;
+    border:1.1mm solid var(--gold); background:#2B3B57;
+  }
+  .photo-ph{ display:flex; align-items:center; justify-content:center;
+    font-size:11pt; letter-spacing:.14em; color:var(--gold-soft); font-weight:600; }
+
+  .idblock{ min-width:0; }
+  .name{ font-size:25pt; font-weight:400; line-height:1.12; margin:0 0 1.6mm; }
+  .name b{ font-weight:700; }
+  .role{ font-size:11.5pt; color:var(--gold); font-weight:600; margin-bottom:3.2mm; }
+  .contact{ display:flex; flex-wrap:wrap; gap:1.4mm 4.5mm; font-size:9.2pt; color:#C9D2DF; }
+  .contact span{ white-space:nowrap; }
+  .contact b{ color:var(--gold); font-weight:700; margin-inline-end:1.4mm; }
+  .contact i{ color:#5C6A7E; font-style:normal; margin:0 1.2mm; }
+  .ltr{ direction:ltr; unicode-bidi:isolate; }
+
+  /* ---------- section ---------- */
+  h2{
+    font-size:12pt; color:var(--ink); font-weight:700;
+    margin:0 0 3mm; padding-bottom:1.4mm;
+    border-bottom:.5mm solid var(--rule); position:relative;
+  }
+  h2::after{ content:""; position:absolute; right:0; bottom:-.5mm;
+    width:16mm; height:.5mm; background:var(--gold); }
+  section{ margin-bottom:4mm; }
+
+  .lede{ font-size:10.4pt; line-height:1.72; margin:0; text-align:justify; }
+  .lede strong{ color:var(--ink); font-weight:700; }
+
+  /* ---------- experience ---------- */
+  .job{ margin-bottom:4.4mm; padding-inline-start:5.5mm; position:relative; break-inside:avoid; }
+  .job::before{ content:""; position:absolute; inset-inline-start:0; top:2.4mm;
+    width:2.1mm; height:2.1mm; border-radius:50%;
+    background:var(--gold); box-shadow:0 0 0 .7mm #fff, 0 0 0 1.1mm var(--gold-soft); }
+  .job::after{ content:""; position:absolute; inset-inline-start:.95mm; top:6mm; bottom:-3mm;
+    width:.25mm; background:var(--rule); }
+  .job:last-child::after{ display:none; }
+
+  .job-top{ display:flex; justify-content:space-between; align-items:baseline; gap:4mm; }
+  .job-title{ font-size:12pt; font-weight:700; color:var(--ink); }
+  .job-date{ font-size:9pt; font-weight:700; color:var(--gold); white-space:nowrap; }
+  .job-org{ font-size:9.8pt; color:var(--muted); margin:.4mm 0 1.8mm; }
+  .job ul{ margin:0; padding-inline-start:4.6mm; }
+  .job li{ margin-bottom:1mm; line-height:1.6; }
+  .job li::marker{ color:var(--gold); }
+  .job li b{ color:var(--ink); font-weight:700; }
+
+  /* ---------- skills ---------- */
+  .skill-row{ display:grid; grid-template-columns:31mm 1fr; gap:3.5mm; padding:1mm 0;
+    border-bottom:.25mm dotted var(--rule); break-inside:avoid; }
+  .skill-row:last-child{ border-bottom:none; }
+  .skill-label{ font-size:9.6pt; font-weight:700; color:var(--ink); padding-top:.6mm; }
+  .chips{ display:flex; flex-wrap:wrap; gap:1.5mm; }
+  .chip{ font-size:8.6pt; padding:.9mm 2.2mm; border-radius:1mm;
+    background:var(--bg-tint); border:.2mm solid var(--rule); color:var(--ink-soft);
+    white-space:nowrap; direction:ltr; }
+  .chip.hot{ background:#FBF6E8; border-color:var(--gold-soft); color:#7A6425; font-weight:600; }
+
+  /* ---------- feature ---------- */
+  .feature{ background:var(--bg-tint); border-inline-start:1.2mm solid var(--gold);
+    padding:3mm 4.5mm; break-inside:avoid; }
+  .feature h3{ margin:0 0 .8mm; font-size:11pt; color:var(--ink); font-weight:700; }
+  .feature .sub{ font-size:8.8pt; color:var(--muted); margin-bottom:2.4mm; direction:ltr; text-align:right; }
+  .feature p{ margin:0 0 2mm; line-height:1.52; text-align:justify; }
+  .metrics{ display:flex; flex-wrap:wrap; gap:2mm 7mm; }
+  .metric b{ display:block; font-size:14pt; color:var(--gold); font-weight:700; line-height:1.1; }
+  .metric span{ font-size:8pt; color:var(--muted); }
+
+  /* ---------- two-up ---------- */
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:9mm; }
+  .edu{ margin-bottom:2.2mm; break-inside:avoid; }
+  .edu-title{ font-size:10.4pt; font-weight:700; color:var(--ink); line-height:1.4; }
+  .edu-meta{ font-size:9pt; color:var(--gold); font-weight:700; margin:.5mm 0 .6mm; }
+  .edu-org{ font-size:9.4pt; color:var(--muted); }
+
+  .lang{ display:flex; justify-content:space-between; align-items:baseline;
+    padding:1.6mm 0; border-bottom:.25mm dotted var(--rule); }
+  .lang b{ color:var(--ink); font-weight:700; font-size:10.4pt; }
+  .lang span{ font-size:9.2pt; color:var(--muted); }
+
+  .foot{ position:absolute; left:14mm; right:14mm; bottom:6mm;
+    display:flex; justify-content:space-between; font-size:8pt; color:#9AA4B2;
+    border-top:.25mm solid var(--rule); padding-top:2mm; }
+  .foot .ltr{ letter-spacing:.04em; }
+
+  @media print{ body{ background:#fff; } .page{ margin:0; } }
+</style>
+
+<!-- ============================ صفحة 1 ============================ -->
+<div class="page">
+
+  <div class="band">
+    <img class="photo" src="photo.jpg" alt="عبد الحق البجاوي"
+         onerror="this.outerHTML='&lt;div class=&quot;photo photo-ph&quot;&gt;ع&lt;/div&gt;'">
+    <div class="idblock">
+      <div class="name">عبد الحق <b>البجاوي</b></div>
+      <div class="role">مدير قسم التقنية · مطوّر Full-Stack</div>
+      <div class="contact">
+        <span><b>هاتف</b><span class="ltr">+966 53 613 9108 · +966 56 426 9056</span></span>
+        <span><b>بريد</b><span class="ltr">bej.abdelhak@gmail.com</span></span>
+        <span><b>الموقع</b>الرياض، السعودية</span>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <h2>نبذة</h2>
+    <p class="lede">
+      قائد تقني ومطوّر Full-Stack بخبرة تتجاوز <strong>16 عاماً</strong> في بناء برمجيات إنتاجية
+      متكاملة من طرف إلى طرف — قاعدة البيانات، والـ API، والويب، والموبايل، والواجهة نفسها. أقود
+      قسم التقنية في <strong>مجموعة مهام</strong>، حيث أمتلك معمارية وتسليم منصة MAHAM EXPO: منصة
+      إدارة معارض وفعاليات من سبع بوابات مبنية على Laravel API وبوابات React وتطبيق Expo/React
+      Native، تعمل في الإنتاج للتجّار والمستثمرين والرعاة في المملكة العربية السعودية. دخلتُ هندسة
+      البرمجيات عبر <strong>الإخراج الفني وتصميم UX/UI</strong>، وما زال ذلك يشكّل كل ما أبنيه.
+      أعمل بالذكاء الاصطناعي <strong>كجزء من أدواتي لا كتجربة</strong> — Claude Code وCursor
+      وGitHub Copilot في دورتي اليومية، وأصمّم مسارات الوكلاء وبوابات المراجعة التي تُبقي مخرجاتها
+      بمستوى الإنتاج.
+    </p>
+  </section>
+
+  <section>
+    <h2>الخبرة العملية</h2>
+
+    <div class="job">
+      <div class="job-top">
+        <div class="job-title">مدير قسم التقنية (CTO)</div>
+        <div class="job-date"><span class="ltr">2024 — الآن</span></div>
+      </div>
+      <div class="job-org">مجموعة مهام — الرياض، المملكة العربية السعودية</div>
+      <ul>
+        <li>أمتلك المعمارية والتسليم الكامل لمنصة <b>MAHAM EXPO</b> — منصة إنتاجية من سبع بوابات
+            (الإدارة، المستثمر، التاجر، الراعي، الموقع العام، الموبايل، صفحة التطبيق) على مستودع
+            pnpm موحّد، مدعومة بـ Laravel 12 API ونواة MySQL/Redis.</li>
+        <li>صمّمتُ وبنيتُ <b>دورة الأعمال الأساسية</b> من طرف إلى طرف: حجز المساحة ← الاعتماد ←
+            توليد العقد ← التوقيع الثنائي ← الفوترة مع ضريبة القيمة المضافة ← الدفع ← التسوية، مع
+            مسار وساطة ثلاثي للفعاليات المملوكة للمستثمرين.</li>
+        <li>بنيتُ طبقة <b>صلاحيات RBAC مخصّصة</b> بخدمة صلاحيات مستقلة ومسارات مالية سيادية وبوابة
+            اعتماد تنفيذية، ودمجتُ <b>المدفوعات والامتثال</b> — بوابة EDFA مع webhooks آمنة،
+            والفوترة الإلكترونية ZATCA مع رمز QR، ومزامنة Odoo ERP عبر الحسابات والقيود والفواتير.</li>
+        <li>أطلقتُ <b>ميزات مبنية على الذكاء الاصطناعي</b> داخل المنتج — قراءة وثائق KYC بصرياً،
+            وأوامر صوتية بـ Whisper للإدارة، وتقييم العملاء المحتملين، وترجمة تلقائية لـ 12 لغة عبر
+            سلسلة Claude ← Gemini.</li>
+        <li>أسّستُ ممارسة الهندسة من الصفر — <b>توحيد المونوريبو</b>، و20 مسار GitHub Actions
+            لنشر CI/CD تلقائي، وحُرّاس النطاق وCODEOWNERS وفحص الأسرار قبل الـ commit، ما ألغى
+            النشر اليدوي كلياً — وأقود الفريق والمعايير وقرارات المعمارية التي يعمل عليها القسم.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <div class="job-title">مدير قسم الإعلام</div>
+        <div class="job-date"><span class="ltr">2012 — 2020</span></div>
+      </div>
+      <div class="job-org">مركز الحفظ للاستشارات التعليمية والتربوية — المملكة العربية السعودية</div>
+      <ul>
+        <li>قدتُ قسم الإعلام لمدة <b>ثماني سنوات</b>، وامتلكتُ الإخراج الإبداعي والإنتاج الرقمي
+            والمخرجات التقنية للقسم.</li>
+        <li>أدرتُ أعمال الهوية والطباعة والموشن من طرف إلى طرف مع بناء وصيانة الحضور الرقمي داخلياً —
+            وإدارة الفريق وخطّ الإنتاج والتسليم ضمن مواعيد مؤسسية صارمة.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-top">
+        <div class="job-title">مطوّر Full-Stack ومصمّم UX/UI</div>
+        <div class="job-date"><span class="ltr">2008 — 2012</span></div>
+      </div>
+      <div class="job-org">Codec — تونس</div>
+      <ul>
+        <li>أربع سنوات في بناء تطبيقات الويب للعملاء من الواجهة إلى الخادم، من تصميم الواجهة
+            والنماذج الأولية حتى التسليم على جانب الخادم.</li>
+        <li>امتلكتُ <b>UX/UI</b> للمشاريع المُسلَّمة — البحث، والمخططات السلكية، والتصميم البصري،
+            وتنفيذها في الواجهة الأمامية.</li>
+      </ul>
+    </div>
+
+  </section>
+
+  <div class="foot">
+    <span>عبد الحق البجاوي — السيرة الذاتية</span>
+    <span class="ltr">1 / 2</span>
+  </div>
+</div>
+
+<!-- ============================ صفحة 2 ============================ -->
+<div class="page">
+
+  <section style="padding-top:6mm">
+    <h2>المهارات التقنية</h2>
+
+    <div class="skill-row">
+      <div class="skill-label">لغات البرمجة</div>
+      <div class="chips">
+        <span class="chip">PHP 8.3</span><span class="chip">TypeScript</span>
+        <span class="chip">JavaScript (ES2023)</span><span class="chip">SQL</span>
+        <span class="chip">Python</span><span class="chip">HTML5</span><span class="chip">CSS3</span>
+        <span class="chip">Bash</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">الواجهة الخلفية</div>
+      <div class="chips">
+        <span class="chip">Laravel 12</span><span class="chip">Eloquent ORM</span>
+        <span class="chip">REST API design</span><span class="chip">JWT auth</span>
+        <span class="chip">Custom RBAC</span><span class="chip">WebSockets (Reverb)</span>
+        <span class="chip">Queues &amp; jobs</span><span class="chip">Node.js</span>
+        <span class="chip">Express</span><span class="chip">tRPC</span>
+        <span class="chip">FastAPI</span><span class="chip">PHPUnit</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">الواجهة الأمامية</div>
+      <div class="chips">
+        <span class="chip">React 19</span><span class="chip">Vite</span>
+        <span class="chip">Tailwind CSS v4</span><span class="chip">Zustand</span>
+        <span class="chip">TanStack Query v5</span><span class="chip">Wouter</span>
+        <span class="chip">Framer Motion</span><span class="chip">GSAP</span>
+        <span class="chip">Bootstrap 5</span><span class="chip">jQuery</span>
+        <span class="chip">Playwright</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">الموبايل</div>
+      <div class="chips">
+        <span class="chip">React Native</span><span class="chip">Expo / EAS</span>
+        <span class="chip">expo-router</span><span class="chip">Reanimated</span>
+        <span class="chip">Mapbox GL</span><span class="chip">RTL / i18n</span>
+        <span class="chip">App Store &amp; Play</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">قواعد البيانات</div>
+      <div class="chips">
+        <span class="chip">MySQL 8</span><span class="chip">Redis</span>
+        <span class="chip">MongoDB</span><span class="chip">Schema &amp; migrations</span>
+        <span class="chip">Query optimisation</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">DevOps</div>
+      <div class="chips">
+        <span class="chip">Docker</span><span class="chip">Nginx</span>
+        <span class="chip">GitHub Actions CI/CD</span><span class="chip">Linux VPS</span>
+        <span class="chip">Git</span><span class="chip">pnpm monorepo</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">الذكاء الاصطناعي</div>
+      <div class="chips">
+        <span class="chip hot">Claude / Claude Code</span><span class="chip hot">Cursor</span>
+        <span class="chip hot">GitHub Copilot</span><span class="chip hot">Prompt engineering</span>
+        <span class="chip hot">Multi-agent workflows</span><span class="chip hot">OpenAI (GPT / Whisper)</span>
+        <span class="chip hot">Google Gemini</span><span class="chip hot">AI-assisted review</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">التكاملات</div>
+      <div class="chips">
+        <span class="chip">EDFA / Glamerapay</span><span class="chip">TAP Payments</span>
+        <span class="chip">ZATCA e-invoicing</span><span class="chip">Odoo ERP</span>
+        <span class="chip">WhatsApp Business API</span><span class="chip">Msegat SMS</span>
+        <span class="chip">Authentica OTP</span><span class="chip">OneSignal</span>
+        <span class="chip">Nafath · Qiwa · GOSI · Mudad</span>
+      </div>
+    </div>
+
+    <div class="skill-row">
+      <div class="skill-label">التصميم</div>
+      <div class="chips">
+        <span class="chip">Figma</span><span class="chip">Adobe XD</span>
+        <span class="chip">Photoshop</span><span class="chip">Illustrator</span>
+        <span class="chip">After Effects</span><span class="chip">Premiere Pro</span>
+        <span class="chip">Design systems</span><span class="chip">Brand identity</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>أعمال مختارة</h2>
+    <div class="feature">
+      <h3>MAHAM EXPO — منصة إدارة المعارض والفعاليات</h3>
+      <div class="sub">المهندس والمطوّر القائد · Laravel 12 · React 19 · Expo · Docker · mahamexpo.sa</div>
+      <p>
+        منصة بنموذج المُشغّل تعمل مباشرةً في المملكة العربية السعودية. المستثمرون يبنون ويمتلكون
+        الأماكن، والتجّار يحجزون ويتعاقدون على المساحات، والرعاة يشترون الباقات — ومهام تُشغّل وتعتمد
+        وتُسوّي كل علاقة بينهم. مستودع واحد، وسبع واجهات، وخدمتا Laravel، محزّمة خلف Nginx ومنشورة
+        بالكامل عبر CI.
+      </p>
+      <div class="metrics">
+        <div class="metric"><b>7</b><span>بوابات</span></div>
+        <div class="metric"><b>660</b><span>مسار API</span></div>
+        <div class="metric"><b>355</b><span>صفحة إدارة</span></div>
+        <div class="metric"><b>126</b><span>شاشة موبايل</span></div>
+        <div class="metric"><b>131</b><span>جدول بيانات</span></div>
+        <div class="metric"><b>12</b><span>لغة</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cols">
+    <section>
+      <h2>التعليم</h2>
+
+      <div class="edu">
+        <div class="edu-title">علوم الحاسب</div>
+        <div class="edu-meta"><span class="ltr">2004 — 2008</span></div>
+        <div class="edu-org">ثانوية منزل بورقيبة المختلطة — تونس</div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-title">التصميم الجرافيكي وتصميم الويب، UX/UI</div>
+        <div class="edu-meta"><span class="ltr">2009 — 2012</span> · تعلّم ذاتي</div>
+        <div class="edu-org">دراسة مستقلة ودورات تدريبية مكثّفة</div>
+      </div>
+
+      <div class="edu">
+        <div class="edu-title">هندسة Full-Stack</div>
+        <div class="edu-meta"><span class="ltr">2013 — الآن</span> · مستمر</div>
+        <div class="edu-org">تعلّم ذاتي متواصل — إلى عمق الإنتاج</div>
+      </div>
+    </section>
+
+    <section>
+      <h2>اللغات</h2>
+      <div class="lang"><b>العربية</b><span>اللغة الأم</span></div>
+      <div class="lang"><b>الفرنسية</b><span>بطلاقة</span></div>
+      <div class="lang"><b>الإنجليزية</b><span>مستوى احترافي</span></div>
+    </section>
+  </div>
+
+  <div class="foot">
+    <span class="ltr">+966 53 613 9108 · +966 56 426 9056 · bej.abdelhak@gmail.com</span>
+    <span class="ltr">2 / 2</span>
+  </div>
+</div>
