@@ -500,7 +500,6 @@
     ['dlHero','dlFoot'].forEach(function(id){
       var el = document.getElementById(id); if(el) el.setAttribute('href', pdf);
     });
-    try{ localStorage.setItem('cvlang', lang); }catch(e){}
     document.title = rtl
       ? 'عبد الحق البجاوي — مدير قسم التقنية / مطوّر Full-Stack'
       : 'Abdelhak Bejaoui — Head of Technology / Full-Stack Developer';
@@ -511,9 +510,7 @@
   }
 
   (function init(){
-    var saved = 'en';
-    try{ saved = localStorage.getItem('cvlang') || 'en'; }catch(e){}
-    applyLang(saved);
+    applyLang('en'); // English is always the default on load; the toggle switches to Arabic for the current view
     var y = document.getElementById('yr'); if(y) y.textContent = new Date().getFullYear();
 
     var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
