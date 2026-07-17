@@ -8,45 +8,68 @@
 <meta property="og:title" content="Abdelhak Bejaoui — Head of Technology / Full-Stack Developer">
 <meta property="og:description" content="16+ years of full-stack engineering and technical leadership. Laravel · React · React Native · AI-native engineering.">
 <meta property="og:type" content="profile">
+<meta name="theme-color" content="#0A0A0C">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#16243B;
-    --ink-2:#1E3050;
-    --ink-3:#28406A;
-    --gold:#C4A04C;
-    --gold-2:#E7D9AF;
-    --paper:#F7F8FA;
-    --card:#FFFFFF;
-    --body:#33455F;
-    --muted:#77839A;
-    --rule:#E4E8EF;
-    --shadow:0 1px 2px rgba(16,36,59,.04), 0 12px 34px -18px rgba(16,36,59,.28);
+    --bg:#0A0A0C;
+    --bg-2:#0E0E12;
+    --surface:rgba(255,255,255,.045);
+    --surface-2:rgba(255,255,255,.065);
+    --border:rgba(255,255,255,.085);
+    --border-hi:rgba(255,255,255,.16);
+    --text:#ECEDF1;
+    --dim:#A3A5B0;
+    --faint:#71737F;
+    --accent:#D9DDE6;
+    --accent-2:#9A9DA8;
     --maxw:1080px;
     --f-lat:"Inter",system-ui,sans-serif;
     --f-ar:"Cairo",system-ui,sans-serif;
     --font:var(--f-lat);
+    --glass-shadow:0 1px 0 rgba(255,255,255,.06) inset, 0 30px 60px -34px rgba(0,0,0,.85);
   }
   html[dir="rtl"]{ --font:var(--f-ar); }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
   html,body{ max-width:100%; }
   html{ scroll-behavior:smooth; }
-  .hero h1,.eyebrow h2,.job h3,.work h3,.lede{ overflow-wrap:break-word; }
-  .hero-grid > div{ min-width:0; }
   body{
     font-family:var(--font);
-    background:var(--paper);
-    color:var(--body);
+    background:var(--bg);
+    color:var(--text);
     line-height:1.65;
     font-size:16px;
     -webkit-font-smoothing:antialiased;
     overflow-x:hidden;
+    position:relative;
   }
 
-  /* show/hide by language */
+  /* ---------- animated backdrop ---------- */
+  .bg{ position:fixed; inset:0; z-index:-2; overflow:hidden; background:var(--bg); }
+  .bg::before{
+    content:""; position:absolute; inset:-30%;
+    background:
+      radial-gradient(42% 38% at 22% 18%, rgba(120,124,140,.16), transparent 60%),
+      radial-gradient(46% 42% at 82% 12%, rgba(90,94,110,.14), transparent 62%),
+      radial-gradient(50% 46% at 68% 88%, rgba(70,74,92,.16), transparent 64%),
+      radial-gradient(40% 40% at 10% 82%, rgba(100,104,120,.12), transparent 60%);
+    filter:blur(20px);
+    animation:drift 34s ease-in-out infinite alternate;
+  }
+  .bg::after{ /* fine grain, kills banding, adds a photographic tooth */
+    content:""; position:absolute; inset:0; opacity:.035; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  @keyframes drift{
+    0%{ transform:translate3d(-2%,-1%,0) scale(1.05); }
+    50%{ transform:translate3d(2%,2%,0) scale(1.12); }
+    100%{ transform:translate3d(-1%,1%,0) scale(1.06); }
+  }
+
+  /* ---------- i18n ---------- */
   .en,.ar{ display:none; }
   html[data-lang="en"] .en{ display:revert; }
   html[data-lang="ar"] .ar{ display:revert; }
@@ -56,187 +79,231 @@
   a{ color:inherit; text-decoration:none; }
   .wrap{ max-width:var(--maxw); margin:0 auto; padding:0 24px; }
 
-  /* ---------------- nav ---------------- */
+  /* ---------- shared ---------- */
+  .metallic{
+    background:linear-gradient(176deg,#FFFFFF 0%,#DDE0E7 42%,#9FA2AD 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .glass{
+    background:linear-gradient(180deg, var(--surface-2), var(--surface));
+    backdrop-filter:blur(18px) saturate(130%);
+    -webkit-backdrop-filter:blur(18px) saturate(130%);
+    border:1px solid var(--border);
+    border-radius:18px;
+    box-shadow:var(--glass-shadow);
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:11px 18px; border-radius:12px; font-weight:600; font-size:14px;
+    font-family:var(--font); cursor:pointer; border:1px solid transparent;
+    transition:transform .22s cubic-bezier(.2,.7,.2,1), border-color .22s, background .22s, box-shadow .22s;
+    white-space:nowrap;
+  }
+  .btn svg{ flex:0 0 auto; }
+  .btn-primary{
+    background:linear-gradient(180deg,#F4F5F8,#D5D8E0); color:#15151A; font-weight:700;
+    box-shadow:0 10px 26px -12px rgba(233,236,242,.6), 0 1px 0 rgba(255,255,255,.7) inset;
+  }
+  .btn-primary:hover{ transform:translateY(-2px); box-shadow:0 16px 34px -14px rgba(233,236,242,.7); }
+  .btn-glass{
+    background:var(--surface); color:var(--text); border-color:var(--border-hi);
+    backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  }
+  .btn-glass:hover{ transform:translateY(-2px); border-color:rgba(255,255,255,.34); background:var(--surface-2); }
+
+  /* ---------- nav ---------- */
   nav{
     position:sticky; top:0; z-index:50;
-    background:rgba(247,248,250,.82);
-    backdrop-filter:saturate(150%) blur(12px);
-    -webkit-backdrop-filter:saturate(150%) blur(12px);
-    border-bottom:1px solid var(--rule);
+    background:rgba(10,10,12,.55);
+    backdrop-filter:saturate(160%) blur(16px);
+    -webkit-backdrop-filter:saturate(160%) blur(16px);
+    border-bottom:1px solid var(--border);
   }
   .nav-in{ max-width:var(--maxw); margin:0 auto; padding:12px 24px;
     display:flex; align-items:center; justify-content:space-between; gap:16px; }
-  .brand{ display:flex; align-items:center; gap:11px; font-weight:800; color:var(--ink); letter-spacing:.02em; }
   .brand .mono{
-    width:34px; height:34px; border-radius:9px; flex:0 0 auto;
-    background:linear-gradient(135deg,var(--ink),var(--ink-3));
-    color:var(--gold-2); display:grid; place-items:center; font-size:14px; font-weight:800;
-    border:1px solid rgba(196,160,76,.5);
+    width:38px; height:38px; border-radius:11px; flex:0 0 auto;
+    background:linear-gradient(150deg,rgba(255,255,255,.14),rgba(255,255,255,.03));
+    border:1px solid var(--border-hi); display:grid; place-items:center;
+    font-size:14px; font-weight:800; letter-spacing:.04em;
+    box-shadow:0 1px 0 rgba(255,255,255,.12) inset;
   }
-  .brand small{ display:block; font-weight:500; font-size:11.5px; color:var(--muted); letter-spacing:.06em; }
-  .nav-actions{ display:flex; align-items:center; gap:10px; }
-  .btn{
-    display:inline-flex; align-items:center; gap:7px;
-    padding:9px 16px; border-radius:10px; font-weight:600; font-size:14px;
-    font-family:var(--font); cursor:pointer; border:1px solid transparent; transition:.18s;
-    white-space:nowrap;
-  }
-  .btn-gold{ background:var(--gold); color:#231a05; box-shadow:0 6px 16px -8px rgba(196,160,76,.9); }
-  .btn-gold:hover{ filter:brightness(1.06); transform:translateY(-1px); }
-  .btn-ghost{ background:transparent; color:var(--ink); border-color:var(--rule); }
-  .btn-ghost:hover{ border-color:var(--gold); color:var(--ink); background:#fff; }
-  .btn-lang{ background:var(--ink); color:#fff; padding:9px 14px; font-weight:700; letter-spacing:.02em; }
-  .btn-lang:hover{ background:var(--ink-3); }
+  .brand .mono span{ background:linear-gradient(176deg,#fff,#A7AAB4); -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .btn-lang{ background:var(--surface); color:var(--text); border:1px solid var(--border-hi); padding:9px 16px; font-weight:700; letter-spacing:.03em; }
+  .btn-lang:hover{ background:var(--surface-2); border-color:rgba(255,255,255,.32); }
 
-  /* ---------------- hero ---------------- */
-  header.hero{
-    position:relative; color:#EAF0F8; overflow:hidden;
-    background:
-      radial-gradient(1100px 480px at 78% -8%, rgba(196,160,76,.20), transparent 60%),
-      radial-gradient(760px 420px at 4% 108%, rgba(40,64,106,.55), transparent 62%),
-      linear-gradient(160deg,#111d31 0%, var(--ink) 46%, #14263F 100%);
+  /* ---------- hero ---------- */
+  header.hero{ position:relative; overflow:hidden; }
+  .hero-spot{
+    position:absolute; inset:0; z-index:0; pointer-events:none;
+    background:radial-gradient(420px 420px at var(--mx,72%) var(--my,26%), rgba(214,218,228,.10), transparent 68%);
+    transition:opacity .5s; opacity:1;
   }
   .hero-grid{
-    max-width:var(--maxw); margin:0 auto; padding:66px 24px 74px;
-    display:grid; grid-template-columns:200px 1fr; gap:44px; align-items:center;
+    position:relative; z-index:1;
+    max-width:var(--maxw); margin:0 auto; padding:76px 24px 84px;
+    display:grid; grid-template-columns:210px 1fr; gap:48px; align-items:center;
   }
+  .avatar-wrap{ position:relative; width:210px; height:210px; }
+  .avatar-ring{
+    position:absolute; inset:-9px; border-radius:50%;
+    background:conic-gradient(from 0deg, rgba(255,255,255,.5), rgba(255,255,255,0) 25%, rgba(255,255,255,.28) 50%, rgba(255,255,255,0) 75%, rgba(255,255,255,.5));
+    animation:spin 14s linear infinite; -webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+            mask:radial-gradient(farthest-side,transparent calc(100% - 2px),#000 calc(100% - 1px));
+    opacity:.9;
+  }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+  .avatar-halo{ position:absolute; inset:-26px; border-radius:50%;
+    background:radial-gradient(closest-side, rgba(200,205,216,.22), transparent 72%); filter:blur(6px); }
   .avatar{
-    width:196px; height:196px; border-radius:50%; object-fit:cover; object-position:center 16%;
-    border:4px solid rgba(196,160,76,.85);
-    box-shadow:0 22px 55px -20px rgba(0,0,0,.7), inset 0 0 0 6px rgba(255,255,255,.05);
-    background:#243B58;
+    position:relative; width:210px; height:210px; border-radius:50%; object-fit:cover; object-position:center 16%;
+    border:1px solid var(--border-hi);
+    box-shadow:0 26px 60px -22px rgba(0,0,0,.9), 0 0 0 6px rgba(255,255,255,.03) inset;
+    background:#15151A;
   }
-  .avatar-wrap{ position:relative; }
-  .avatar-ring{ position:absolute; inset:-11px; border-radius:50%;
-    border:1px dashed rgba(196,160,76,.4); }
-  .hero h1{ font-size:clamp(30px,4.6vw,46px); line-height:1.06; color:#fff; font-weight:800; letter-spacing:-.01em; }
-  html[dir="rtl"] .hero h1{ letter-spacing:0; }
-  .hero h1 span span{ color:var(--gold-2); font-weight:400; }
-  html[dir="rtl"] .hero h1 span span{ font-weight:700; }
-  .hero .title{ margin-top:10px; font-size:clamp(15px,2vw,19px); font-weight:600; color:var(--gold); letter-spacing:.02em; }
-  .hero .tag{ margin-top:16px; max-width:60ch; color:#C7D2E2; font-size:15.5px; }
-  .hero-meta{ margin-top:22px; display:flex; flex-wrap:wrap; gap:9px 10px; }
+  .hero h1{ font-size:clamp(32px,5vw,50px); line-height:1.04; font-weight:800; letter-spacing:-.02em; }
+  html[dir="rtl"] .hero h1{ letter-spacing:0; font-weight:900; }
+  .hero h1 .last{ font-weight:400; color:var(--dim); }
+  html[dir="rtl"] .hero h1 .last{ font-weight:700; }
+  .hero .title{ margin-top:14px; font-size:clamp(15px,2vw,19px); font-weight:600; color:var(--accent); letter-spacing:.04em; }
+  html[dir="rtl"] .hero .title{ letter-spacing:0; }
+  .hero .tag{ margin-top:18px; max-width:60ch; color:var(--dim); font-size:15.5px; line-height:1.75; }
+  .hero-meta{ margin-top:24px; display:flex; flex-wrap:wrap; gap:10px; }
   .pill{
-    display:inline-flex; align-items:center; gap:7px;
-    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.13);
-    padding:7px 13px; border-radius:999px; font-size:13.5px; color:#DCE5F1;
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--surface); border:1px solid var(--border); color:var(--text);
+    padding:8px 14px; border-radius:999px; font-size:13.5px; transition:border-color .2s, background .2s;
   }
-  .pill svg{ width:14px; height:14px; opacity:.85; flex:0 0 auto; }
+  .pill:hover{ border-color:var(--border-hi); background:var(--surface-2); }
+  .pill svg{ width:14px; height:14px; opacity:.7; flex:0 0 auto; }
   .ltr{ direction:ltr; unicode-bidi:isolate; }
   html[dir="rtl"] .built{ text-align:right; }
   html[dir="rtl"] .built .ltr{ display:inline-block; }
-  .hero-cta{ margin-top:26px; display:flex; flex-wrap:wrap; gap:11px; }
+  .hero-cta{ margin-top:28px; display:flex; flex-wrap:wrap; gap:12px; }
 
-  /* ---------------- sections ---------------- */
-  main{ padding:12px 0 40px; }
-  section.blk{ padding:52px 0 8px; }
-  .eyebrow{ display:flex; align-items:center; gap:12px; margin-bottom:26px; }
-  .eyebrow h2{ font-size:clamp(21px,2.6vw,27px); color:var(--ink); font-weight:800; letter-spacing:-.01em; }
+  /* ---------- sections ---------- */
+  main{ padding:8px 0 40px; position:relative; z-index:1; }
+  section.blk{ padding:56px 0 8px; }
+  .eyebrow{ display:flex; align-items:center; gap:14px; margin-bottom:28px; }
+  .eyebrow h2{ font-size:clamp(20px,2.6vw,26px); font-weight:800; letter-spacing:-.01em; color:var(--text); }
   html[dir="rtl"] .eyebrow h2{ letter-spacing:0; }
-  .eyebrow .bar{ height:3px; width:34px; border-radius:3px; background:var(--gold); flex:0 0 auto; }
-  .eyebrow .rest{ flex:1; height:1px; background:var(--rule); }
+  .eyebrow .idx{ font-family:var(--f-lat); font-size:12.5px; font-weight:700; color:var(--faint); letter-spacing:.14em; }
+  .eyebrow .rest{ flex:1; height:1px; background:linear-gradient(90deg,var(--border-hi),transparent); }
+  html[dir="rtl"] .eyebrow .rest{ background:linear-gradient(270deg,var(--border-hi),transparent); }
 
-  .card{ background:var(--card); border:1px solid var(--rule); border-radius:16px; box-shadow:var(--shadow); }
-  .lede{ font-size:17px; color:#3B4C66; }
-  .lede b,.lede strong{ color:var(--ink); font-weight:700; }
-  .about-card{ padding:28px 30px; }
+  .lede{ font-size:16.5px; color:var(--dim); overflow-wrap:break-word; }
+  .lede b,.lede strong{ color:var(--text); font-weight:700; }
+  .about-card{ padding:30px 32px; }
 
   /* timeline */
   .tl{ display:grid; gap:16px; }
-  .job{ padding:24px 26px; position:relative; }
+  .job{ padding:26px 28px; position:relative; transition:transform .24s cubic-bezier(.2,.7,.2,1), border-color .24s; }
+  .job:hover{ transform:translateY(-3px); border-color:var(--border-hi); }
   .job .jtop{ display:flex; flex-wrap:wrap; justify-content:space-between; gap:6px 18px; align-items:baseline; }
-  .job h3{ font-size:18.5px; color:var(--ink); font-weight:700; }
-  .job .date{ font-size:13px; font-weight:700; color:var(--gold); letter-spacing:.04em; white-space:nowrap; }
-  .job .org{ color:var(--muted); font-size:14.5px; margin-top:3px; font-weight:500; }
-  .job ul{ margin:14px 0 0; padding:0; list-style:none; display:grid; gap:9px; }
-  .job li{ position:relative; padding-inline-start:20px; font-size:15px; color:#41536E; }
-  .job li::before{ content:""; position:absolute; inset-inline-start:2px; top:9px; width:7px; height:7px;
-    border-radius:50%; background:var(--gold); box-shadow:0 0 0 3px rgba(196,160,76,.16); }
-  .job li b{ color:var(--ink); font-weight:700; }
+  .job h3{ font-size:18.5px; color:var(--text); font-weight:700; overflow-wrap:break-word; }
+  .job .date{ font-family:var(--f-lat); font-size:12.5px; font-weight:700; color:var(--accent); letter-spacing:.06em; white-space:nowrap;
+    padding:4px 10px; border:1px solid var(--border); border-radius:999px; background:var(--surface); }
+  .job .org{ color:var(--faint); font-size:14px; margin-top:8px; font-weight:500; }
+  .job ul{ margin:16px 0 0; padding:0; list-style:none; display:grid; gap:10px; }
+  .job li{ position:relative; padding-inline-start:22px; font-size:14.5px; color:var(--dim); }
+  .job li::before{ content:""; position:absolute; inset-inline-start:2px; top:8px; width:6px; height:6px;
+    border-radius:50%; background:linear-gradient(180deg,#fff,#9a9da8); box-shadow:0 0 0 4px rgba(255,255,255,.06); }
+  .job li b{ color:var(--text); font-weight:700; }
 
   /* skills */
   .skills{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px; }
-  .skgroup{ padding:18px 20px; }
-  .skgroup h4{ font-size:12.5px; text-transform:uppercase; letter-spacing:.11em; color:var(--muted); font-weight:700; margin-bottom:12px; }
-  html[dir="rtl"] .skgroup h4{ letter-spacing:.02em; text-transform:none; font-size:14px; color:var(--ink); }
+  .skgroup{ padding:20px 22px; transition:transform .24s cubic-bezier(.2,.7,.2,1), border-color .24s; }
+  .skgroup:hover{ transform:translateY(-3px); border-color:var(--border-hi); }
+  .skgroup h4{ font-family:var(--f-lat); font-size:11.5px; text-transform:uppercase; letter-spacing:.16em; color:var(--faint); font-weight:700; margin-bottom:14px; }
+  html[dir="rtl"] .skgroup h4{ font-family:var(--f-ar); letter-spacing:0; text-transform:none; font-size:14px; color:var(--accent); }
   .chips{ display:flex; flex-wrap:wrap; gap:8px; }
-  .chip{ font-family:var(--f-lat); direction:ltr; font-size:13px; padding:6px 11px; border-radius:8px;
-    background:#F1F4F8; border:1px solid var(--rule); color:#3C4E68; font-weight:500; }
-  .skgroup.ai .chip{ background:#FBF4E2; border-color:var(--gold-2); color:#7A5F1C; font-weight:600; }
+  .chip{ font-family:var(--f-lat); direction:ltr; font-size:12.5px; padding:6px 12px; border-radius:9px;
+    background:var(--surface); border:1px solid var(--border); color:var(--dim); font-weight:500; transition:.2s; }
+  .chip:hover{ border-color:var(--border-hi); color:var(--text); background:var(--surface-2); }
+  .skgroup.ai .chip{ background:linear-gradient(180deg,rgba(255,255,255,.10),rgba(255,255,255,.04)); border-color:var(--border-hi); color:var(--text); font-weight:600; }
 
   /* work */
-  .work{ padding:0; overflow:hidden; }
-  .work-body{ padding:28px 30px; }
-  .work h3{ font-size:21px; color:var(--ink); font-weight:800; }
-  .work .sub{ direction:ltr; font-family:var(--f-lat); color:var(--muted); font-size:13.5px; margin-top:5px; font-weight:500; }
+  .work{ overflow:hidden; }
+  .work-body{ padding:30px 32px; }
+  .work h3{ font-size:21px; color:var(--text); font-weight:800; overflow-wrap:break-word; }
+  .work .sub{ direction:ltr; font-family:var(--f-lat); color:var(--faint); font-size:13px; margin-top:7px; font-weight:500; letter-spacing:.02em; }
   html[dir="rtl"] .work .sub{ text-align:right; }
-  .work p{ margin-top:15px; font-size:15.5px; color:#41536E; }
+  .work p{ margin-top:16px; font-size:15px; color:var(--dim); }
   .metrics{ display:grid; grid-template-columns:repeat(6,1fr); gap:8px;
-    background:linear-gradient(160deg,var(--ink),var(--ink-3)); padding:22px 30px; }
-  .metric b{ display:block; font-family:var(--f-lat); font-size:27px; color:var(--gold-2); font-weight:800; line-height:1; }
-  .metric > span{ display:block; margin-top:6px; font-size:11.5px; color:#A9B7CC; letter-spacing:.02em; }
+    padding:26px 30px; border-top:1px solid var(--border);
+    background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)); }
+  .metric b{ display:block; font-family:var(--f-lat); font-size:30px; font-weight:800; line-height:1; letter-spacing:-.02em; }
+  .metric > span{ display:block; margin-top:8px; font-size:11px; color:var(--faint); letter-spacing:.04em; }
 
   /* edu + lang */
   .two{ display:grid; grid-template-columns:1.3fr 1fr; gap:16px; align-items:start; }
-  .edu-card,.lang-card{ padding:24px 26px; }
-  .edu{ padding:14px 0; border-bottom:1px dashed var(--rule); }
+  .edu-card,.lang-card{ padding:26px 28px; }
+  .edu{ padding:16px 0; border-bottom:1px solid var(--border); }
   .edu:last-child{ border-bottom:none; padding-bottom:0; }
   .edu:first-child{ padding-top:0; }
-  .edu h4{ font-size:16px; color:var(--ink); font-weight:700; }
-  .edu .m{ font-size:13px; color:var(--gold); font-weight:700; margin:3px 0; }
-  .edu .o{ font-size:14px; color:var(--muted); }
-  .lang-row{ display:flex; justify-content:space-between; align-items:center; padding:13px 0; border-bottom:1px dashed var(--rule); }
-  .lang-row:last-child{ border-bottom:none; }
-  .lang-row b{ color:var(--ink); font-weight:700; font-size:15.5px; }
-  .lang-row span{ color:var(--muted); font-size:14px; }
-  .lang-row .dots{ display:inline-flex; gap:4px; }
-  .dot{ width:8px; height:8px; border-radius:50%; background:var(--rule); }
-  .dot.on{ background:var(--gold); }
+  .edu h4{ font-size:16px; color:var(--text); font-weight:700; }
+  .edu .m{ font-family:var(--f-lat); font-size:12.5px; color:var(--accent); font-weight:700; margin:5px 0; letter-spacing:.03em; }
+  html[dir="rtl"] .edu .m{ font-family:var(--f-ar); letter-spacing:0; }
+  .edu .o{ font-size:14px; color:var(--faint); }
+  .lang-row{ display:flex; justify-content:space-between; align-items:center; padding:15px 0; border-bottom:1px solid var(--border); }
+  .lang-row:last-child{ border-bottom:none; padding-bottom:0; }
+  .lang-row:first-child{ padding-top:0; }
+  .lang-row b{ color:var(--text); font-weight:700; font-size:15.5px; }
+  .lang-row .dots{ display:inline-flex; gap:5px; }
+  .dot{ width:8px; height:8px; border-radius:50%; background:var(--border-hi); }
+  .dot.on{ background:linear-gradient(180deg,#fff,#9a9da8); box-shadow:0 0 8px rgba(255,255,255,.25); }
 
   /* footer */
-  footer{ margin-top:44px; background:linear-gradient(160deg,var(--ink),#111d31); color:#C7D2E2; }
-  .foot-in{ max-width:var(--maxw); margin:0 auto; padding:44px 24px;
-    display:flex; flex-wrap:wrap; gap:22px; justify-content:space-between; align-items:center; }
-  .foot h3{ color:#fff; font-size:20px; font-weight:800; }
-  .foot-links{ display:flex; flex-wrap:wrap; gap:10px; margin-top:14px; }
-  .foot .built{ font-size:12.5px; color:#8595AD; }
-  .foot .built b{ color:var(--gold-2); font-weight:600; }
+  footer{ margin-top:52px; border-top:1px solid var(--border);
+    background:linear-gradient(180deg, rgba(255,255,255,.02), transparent); }
+  .foot-in{ max-width:var(--maxw); margin:0 auto; padding:48px 24px;
+    display:flex; flex-wrap:wrap; gap:24px; justify-content:space-between; align-items:center; }
+  .foot h3{ color:var(--text); font-size:22px; font-weight:800; }
+  .foot-links{ display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+  .foot .built{ font-family:var(--f-lat); font-size:12.5px; color:var(--faint); line-height:1.9; }
+
+  /* ---------- reveal animation ---------- */
+  body.anim .reveal{ opacity:0; transform:translateY(26px); transition:opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
+  body.anim .reveal.in{ opacity:1; transform:none; }
+  body.anim .hero-stagger > *{ opacity:0; transform:translateY(18px); animation:rise .8s cubic-bezier(.2,.7,.2,1) forwards; }
+  body.anim .hero-stagger > *:nth-child(1){ animation-delay:.05s; }
+  body.anim .hero-stagger > *:nth-child(2){ animation-delay:.14s; }
+  body.anim .hero-stagger > *:nth-child(3){ animation-delay:.23s; }
+  body.anim .hero-stagger > *:nth-child(4){ animation-delay:.32s; }
+  body.anim .hero-stagger > *:nth-child(5){ animation-delay:.41s; }
+  body.anim .avatar-wrap{ opacity:0; animation:fade 1s ease .1s forwards; }
+  @keyframes rise{ to{ opacity:1; transform:none; } }
+  @keyframes fade{ to{ opacity:1; } }
 
   @media (max-width:820px){
-    .hero-grid{ grid-template-columns:1fr; gap:26px; text-align:center; padding:48px 24px 56px; justify-items:center; }
+    .hero-grid{ grid-template-columns:1fr; gap:30px; text-align:center; padding:52px 24px 60px; justify-items:center; }
+    .hero-stagger{ min-width:0; }
     .hero .tag{ margin-inline:auto; }
     .hero-meta,.hero-cta{ justify-content:center; }
-    .skills,.two,.metrics{ grid-template-columns:1fr; }
-    .metrics{ grid-template-columns:repeat(3,1fr); gap:16px 8px; }
-    .brand small{ display:none; }
+    .skills,.two{ grid-template-columns:1fr; }
+    .metrics{ grid-template-columns:repeat(3,1fr); gap:18px 8px; }
   }
   @media (max-width:460px){
     .metrics{ grid-template-columns:repeat(2,1fr); }
     .nav-in{ padding:10px 16px; }
-    .btn-dl-nav{ display:none; }
+    .foot-in{ padding:36px 20px; }
   }
 
-  @media (prefers-color-scheme:dark){
-    :root{
-      --paper:#0E1726; --card:#152135; --body:#C3CEDE; --ink:#EAF0F8; --ink-3:#2B4064;
-      --muted:#8B99B0; --rule:#243349; --gold:#D2B160; --gold-2:#E7D9AF;
-      --shadow:0 1px 2px rgba(0,0,0,.3), 0 16px 40px -20px rgba(0,0,0,.6);
-    }
-    nav{ background:rgba(14,23,38,.82); }
-    .chip{ background:#1C2A42; color:#B9C7DD; }
-    .skgroup.ai .chip{ background:#2A2413; border-color:#5B4A22; color:#E7D9AF; }
-    .btn-ghost{ color:var(--ink); }
-    .btn-ghost:hover{ background:#1C2A42; }
-    .brand .mono{ border-color:rgba(210,177,96,.5); }
+  @media (prefers-reduced-motion:reduce){
+    .bg::before{ animation:none; }
+    .avatar-ring{ animation:none; }
+    *{ scroll-behavior:auto !important; }
   }
 </style>
 </head>
 <body>
+<div class="bg" aria-hidden="true"></div>
 
 <nav>
   <div class="nav-in">
     <a class="brand" href="#top" aria-label="Abdelhak Bejaoui">
-      <span class="mono">AB</span>
+      <span class="mono"><span>AB</span></span>
     </a>
     <div class="nav-actions">
       <button class="btn btn-lang" id="langBtn" onclick="toggleLang()">
@@ -247,15 +314,17 @@
 </nav>
 
 <header class="hero" id="top">
+  <div class="hero-spot" id="heroSpot" aria-hidden="true"></div>
   <div class="hero-grid">
     <div class="avatar-wrap">
+      <div class="avatar-halo"></div>
       <div class="avatar-ring"></div>
       <img class="avatar" src="photo.jpg" alt="Abdelhak Bejaoui">
     </div>
-    <div>
+    <div class="hero-stagger">
       <h1>
-        <span class="en">Abdelhak <span>Bejaoui</span></span>
-        <span class="ar">عبد الحق <span>البجاوي</span></span>
+        <span class="en">Abdelhak <span class="last">Bejaoui</span></span>
+        <span class="ar">عبد الحق <span class="last">البجاوي</span></span>
       </h1>
       <div class="title">
         <span class="en">Head of Technology · Full-Stack Developer</span>
@@ -272,11 +341,11 @@
         <span class="pill"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span class="en">Riyadh, Saudi Arabia</span><span class="ar">الرياض، السعودية</span></span>
       </div>
       <div class="hero-cta">
-        <a class="btn btn-gold" id="dlHero" href="Abdelhak-Bejaoui-CV.pdf" download>
+        <a class="btn btn-primary" id="dlHero" href="Abdelhak-Bejaoui-CV.pdf" download>
           <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
           <span class="en">Download CV (PDF)</span><span class="ar">تحميل السيرة (PDF)</span>
         </a>
-        <a class="btn btn-ghost" style="color:#EAF0F8;border-color:rgba(255,255,255,.2)" href="https://wa.me/966536139108" target="_blank" rel="noopener">
+        <a class="btn btn-glass" href="https://wa.me/966536139108" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.53 15.26L2 22l4.85-1.42A10 10 0 1 0 12 2z"/></svg>
           <span class="en">WhatsApp</span><span class="ar">واتساب</span>
         </a>
@@ -290,8 +359,8 @@
 
   <!-- About -->
   <section class="blk" id="about">
-    <div class="eyebrow"><span class="bar"></span><h2><span class="en">Profile</span><span class="ar">نبذة</span></h2><span class="rest"></span></div>
-    <div class="card about-card">
+    <div class="eyebrow reveal"><span class="idx">01</span><h2><span class="en">Profile</span><span class="ar">نبذة</span></h2><span class="rest"></span></div>
+    <div class="glass about-card reveal">
       <p class="lede">
         <span class="en">Technology leader and hands-on full-stack engineer with <b>16+ years</b> delivering production software end to end. I lead the technology department at <b>Maham Group</b>, where I own the architecture and delivery of MAHAM EXPO — a seven-portal exhibition and event platform on a Laravel API, React portals and an Expo/React Native app, live for merchants, investors and sponsors across Saudi Arabia. My route into engineering ran through <b>art direction and UX/UI design</b>, and it still shapes everything I ship. I build with <b>AI as part of the toolchain, not as an experiment</b> — Claude Code, Cursor and GitHub Copilot are in my daily loop, and I design the agent workflows and review gates that keep their output production-grade.</span>
         <span class="ar">قائد تقني ومطوّر Full-Stack بخبرة تتجاوز <b>16 عاماً</b> في بناء برمجيات إنتاجية متكاملة من طرف إلى طرف. أقود قسم التقنية في <b>مجموعة مهام</b>، حيث أمتلك معمارية وتسليم منصة MAHAM EXPO — منصة معارض وفعاليات من سبع بوابات على Laravel API وبوابات React وتطبيق Expo/React Native، تعمل في الإنتاج للتجّار والمستثمرين والرعاة في المملكة. دخلتُ هندسة البرمجيات عبر <b>الإخراج الفني وتصميم UX/UI</b>، وما زال ذلك يشكّل كل ما أبنيه. أعمل بالذكاء الاصطناعي <b>كجزء من أدواتي لا كتجربة</b> — Claude Code وCursor وGitHub Copilot في دورتي اليومية، وأصمّم مسارات الوكلاء وبوابات المراجعة التي تُبقي مخرجاتها بمستوى الإنتاج.</span>
@@ -301,10 +370,10 @@
 
   <!-- Experience -->
   <section class="blk" id="experience">
-    <div class="eyebrow"><span class="bar"></span><h2><span class="en">Experience</span><span class="ar">الخبرة العملية</span></h2><span class="rest"></span></div>
+    <div class="eyebrow reveal"><span class="idx">02</span><h2><span class="en">Experience</span><span class="ar">الخبرة العملية</span></h2><span class="rest"></span></div>
     <div class="tl">
 
-      <div class="card job">
+      <div class="glass job reveal">
         <div class="jtop">
           <h3><span class="en">Head of Technology (CTO)</span><span class="ar">مدير قسم التقنية (CTO)</span></h3>
           <span class="date ltr">2024 — <span class="en">Present</span><span class="ar">الآن</span></span>
@@ -319,7 +388,7 @@
         </ul>
       </div>
 
-      <div class="card job">
+      <div class="glass job reveal">
         <div class="jtop">
           <h3><span class="en">Director of Media Department</span><span class="ar">مدير قسم الإعلام</span></h3>
           <span class="date ltr">2012 — 2020</span>
@@ -331,7 +400,7 @@
         </ul>
       </div>
 
-      <div class="card job">
+      <div class="glass job reveal">
         <div class="jtop">
           <h3><span class="en">Full-Stack Developer &amp; UX/UI Designer</span><span class="ar">مطوّر Full-Stack ومصمّم UX/UI</span></h3>
           <span class="date ltr">2008 — 2012</span>
@@ -348,23 +417,23 @@
 
   <!-- Skills -->
   <section class="blk" id="skills">
-    <div class="eyebrow"><span class="bar"></span><h2><span class="en">Technical Skills</span><span class="ar">المهارات التقنية</span></h2><span class="rest"></span></div>
+    <div class="eyebrow reveal"><span class="idx">03</span><h2><span class="en">Technical Skills</span><span class="ar">المهارات التقنية</span></h2><span class="rest"></span></div>
     <div class="skills">
-      <div class="card skgroup"><h4><span class="en">Languages</span><span class="ar">لغات البرمجة</span></h4><div class="chips"><span class="chip">PHP 8.3</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Bash</span></div></div>
-      <div class="card skgroup"><h4><span class="en">Backend</span><span class="ar">الواجهة الخلفية</span></h4><div class="chips"><span class="chip">Laravel 12</span><span class="chip">Eloquent ORM</span><span class="chip">REST APIs</span><span class="chip">JWT auth</span><span class="chip">Custom RBAC</span><span class="chip">WebSockets</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">tRPC</span><span class="chip">FastAPI</span><span class="chip">PHPUnit</span></div></div>
-      <div class="card skgroup"><h4><span class="en">Frontend</span><span class="ar">الواجهة الأمامية</span></h4><div class="chips"><span class="chip">React 19</span><span class="chip">Vite</span><span class="chip">Tailwind v4</span><span class="chip">Zustand</span><span class="chip">TanStack Query</span><span class="chip">Wouter</span><span class="chip">Framer Motion</span><span class="chip">GSAP</span><span class="chip">Bootstrap 5</span><span class="chip">Playwright</span></div></div>
-      <div class="card skgroup"><h4><span class="en">Mobile</span><span class="ar">الموبايل</span></h4><div class="chips"><span class="chip">React Native</span><span class="chip">Expo / EAS</span><span class="chip">expo-router</span><span class="chip">Reanimated</span><span class="chip">Mapbox GL</span><span class="chip">RTL / i18n</span></div></div>
-      <div class="card skgroup"><h4><span class="en">Data &amp; DevOps</span><span class="ar">البيانات و DevOps</span></h4><div class="chips"><span class="chip">MySQL 8</span><span class="chip">Redis</span><span class="chip">MongoDB</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">GitHub Actions</span><span class="chip">Linux VPS</span><span class="chip">pnpm monorepo</span></div></div>
-      <div class="card skgroup ai"><h4><span class="en">AI Engineering</span><span class="ar">هندسة الذكاء الاصطناعي</span></h4><div class="chips"><span class="chip">Claude / Claude Code</span><span class="chip">Cursor</span><span class="chip">GitHub Copilot</span><span class="chip">Prompt engineering</span><span class="chip">Multi-agent workflows</span><span class="chip">OpenAI</span><span class="chip">Gemini</span></div></div>
-      <div class="card skgroup"><h4><span class="en">Integrations</span><span class="ar">التكاملات</span></h4><div class="chips"><span class="chip">EDFA</span><span class="chip">TAP Payments</span><span class="chip">ZATCA</span><span class="chip">Odoo ERP</span><span class="chip">WhatsApp API</span><span class="chip">Msegat SMS</span><span class="chip">Nafath</span><span class="chip">Qiwa · GOSI · Mudad</span></div></div>
-      <div class="card skgroup"><h4><span class="en">Design</span><span class="ar">التصميم</span></h4><div class="chips"><span class="chip">Figma</span><span class="chip">Adobe XD</span><span class="chip">Photoshop</span><span class="chip">Illustrator</span><span class="chip">After Effects</span><span class="chip">Premiere Pro</span><span class="chip">Design systems</span></div></div>
+      <div class="glass skgroup reveal"><h4><span class="en">Languages</span><span class="ar">لغات البرمجة</span></h4><div class="chips"><span class="chip">PHP 8.3</span><span class="chip">TypeScript</span><span class="chip">JavaScript</span><span class="chip">SQL</span><span class="chip">Python</span><span class="chip">HTML5</span><span class="chip">CSS3</span><span class="chip">Bash</span></div></div>
+      <div class="glass skgroup reveal"><h4><span class="en">Backend</span><span class="ar">الواجهة الخلفية</span></h4><div class="chips"><span class="chip">Laravel 12</span><span class="chip">Eloquent ORM</span><span class="chip">REST APIs</span><span class="chip">JWT auth</span><span class="chip">Custom RBAC</span><span class="chip">WebSockets</span><span class="chip">Node.js</span><span class="chip">Express</span><span class="chip">tRPC</span><span class="chip">FastAPI</span><span class="chip">PHPUnit</span></div></div>
+      <div class="glass skgroup reveal"><h4><span class="en">Frontend</span><span class="ar">الواجهة الأمامية</span></h4><div class="chips"><span class="chip">React 19</span><span class="chip">Vite</span><span class="chip">Tailwind v4</span><span class="chip">Zustand</span><span class="chip">TanStack Query</span><span class="chip">Wouter</span><span class="chip">Framer Motion</span><span class="chip">GSAP</span><span class="chip">Bootstrap 5</span><span class="chip">Playwright</span></div></div>
+      <div class="glass skgroup reveal"><h4><span class="en">Mobile</span><span class="ar">الموبايل</span></h4><div class="chips"><span class="chip">React Native</span><span class="chip">Expo / EAS</span><span class="chip">expo-router</span><span class="chip">Reanimated</span><span class="chip">Mapbox GL</span><span class="chip">RTL / i18n</span></div></div>
+      <div class="glass skgroup reveal"><h4><span class="en">Data &amp; DevOps</span><span class="ar">البيانات و DevOps</span></h4><div class="chips"><span class="chip">MySQL 8</span><span class="chip">Redis</span><span class="chip">MongoDB</span><span class="chip">Docker</span><span class="chip">Nginx</span><span class="chip">GitHub Actions</span><span class="chip">Linux VPS</span><span class="chip">pnpm monorepo</span></div></div>
+      <div class="glass skgroup ai reveal"><h4><span class="en">AI Engineering</span><span class="ar">هندسة الذكاء الاصطناعي</span></h4><div class="chips"><span class="chip">Claude / Claude Code</span><span class="chip">Cursor</span><span class="chip">GitHub Copilot</span><span class="chip">Prompt engineering</span><span class="chip">Multi-agent workflows</span><span class="chip">OpenAI</span><span class="chip">Gemini</span></div></div>
+      <div class="glass skgroup reveal"><h4><span class="en">Integrations</span><span class="ar">التكاملات</span></h4><div class="chips"><span class="chip">EDFA</span><span class="chip">TAP Payments</span><span class="chip">ZATCA</span><span class="chip">Odoo ERP</span><span class="chip">WhatsApp API</span><span class="chip">Msegat SMS</span><span class="chip">Nafath</span><span class="chip">Qiwa · GOSI · Mudad</span></div></div>
+      <div class="glass skgroup reveal"><h4><span class="en">Design</span><span class="ar">التصميم</span></h4><div class="chips"><span class="chip">Figma</span><span class="chip">Adobe XD</span><span class="chip">Photoshop</span><span class="chip">Illustrator</span><span class="chip">After Effects</span><span class="chip">Premiere Pro</span><span class="chip">Design systems</span></div></div>
     </div>
   </section>
 
   <!-- Selected Work -->
   <section class="blk" id="work">
-    <div class="eyebrow"><span class="bar"></span><h2><span class="en">Selected Work</span><span class="ar">أعمال مختارة</span></h2><span class="rest"></span></div>
-    <div class="card work">
+    <div class="eyebrow reveal"><span class="idx">04</span><h2><span class="en">Selected Work</span><span class="ar">أعمال مختارة</span></h2><span class="rest"></span></div>
+    <div class="glass work reveal">
       <div class="work-body">
         <h3><span class="en">MAHAM EXPO — Exhibition &amp; Event Management Platform</span><span class="ar">MAHAM EXPO — منصة إدارة المعارض والفعاليات</span></h3>
         <div class="sub">Architect &amp; lead engineer · Laravel 12 · React 19 · Expo · Docker · mahamexpo.sa</div>
@@ -374,25 +443,25 @@
         </p>
       </div>
       <div class="metrics">
-        <div class="metric"><b>7</b><span><span class="en">Portals</span><span class="ar">بوابات</span></span></div>
-        <div class="metric"><b>660</b><span><span class="en">API routes</span><span class="ar">مسار API</span></span></div>
-        <div class="metric"><b>355</b><span><span class="en">Admin pages</span><span class="ar">صفحة إدارة</span></span></div>
-        <div class="metric"><b>126</b><span><span class="en">Mobile screens</span><span class="ar">شاشة موبايل</span></span></div>
-        <div class="metric"><b>131</b><span><span class="en">DB tables</span><span class="ar">جدول بيانات</span></span></div>
-        <div class="metric"><b>12</b><span><span class="en">Languages</span><span class="ar">لغة</span></span></div>
+        <div class="metric"><b class="metallic" data-count>7</b><span><span class="en">Portals</span><span class="ar">بوابات</span></span></div>
+        <div class="metric"><b class="metallic" data-count>660</b><span><span class="en">API routes</span><span class="ar">مسار API</span></span></div>
+        <div class="metric"><b class="metallic" data-count>355</b><span><span class="en">Admin pages</span><span class="ar">صفحة إدارة</span></span></div>
+        <div class="metric"><b class="metallic" data-count>126</b><span><span class="en">Mobile screens</span><span class="ar">شاشة موبايل</span></span></div>
+        <div class="metric"><b class="metallic" data-count>131</b><span><span class="en">DB tables</span><span class="ar">جدول بيانات</span></span></div>
+        <div class="metric"><b class="metallic" data-count>12</b><span><span class="en">Languages</span><span class="ar">لغة</span></span></div>
       </div>
     </div>
   </section>
 
   <!-- Education + Languages -->
   <section class="blk" id="education">
-    <div class="eyebrow"><span class="bar"></span><h2><span class="en">Education &amp; Languages</span><span class="ar">التعليم واللغات</span></h2><span class="rest"></span></div>
+    <div class="eyebrow reveal"><span class="idx">05</span><h2><span class="en">Education &amp; Languages</span><span class="ar">التعليم واللغات</span></h2><span class="rest"></span></div>
     <div class="two">
-      <div class="card edu-card">
+      <div class="glass edu-card reveal">
         <div class="edu"><h4><span class="en">Computer Science</span><span class="ar">علوم الحاسب</span></h4><div class="m ltr">2004 — 2008</div><div class="o"><span class="en">Lycée Mixte Menzel Bourguiba — Tunisia</span><span class="ar">ثانوية منزل بورقيبة المختلطة — تونس</span></div></div>
         <div class="edu"><h4><span class="en">Full-Stack Development</span><span class="ar">تطوير Full-Stack</span></h4><div class="m"><span class="ltr">2009 — <span class="en">Present</span><span class="ar">الآن</span></span> · <span class="en">Self-directed</span><span class="ar">تعلّم ذاتي</span></div><div class="o"><span class="en">Independent study, bootcamps and continuous learning to production depth</span><span class="ar">دراسة مستقلة ودورات مكثّفة وتعلّم متواصل إلى عمق الإنتاج</span></div></div>
       </div>
-      <div class="card lang-card">
+      <div class="glass lang-card reveal">
         <div class="lang-row"><b><span class="en">Arabic</span><span class="ar">العربية</span></b><span class="dots"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i></span></div>
         <div class="lang-row"><b><span class="en">French</span><span class="ar">الفرنسية</span></b><span class="dots"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i></span></div>
         <div class="lang-row"><b><span class="en">English</span><span class="ar">الإنجليزية</span></b><span class="dots"><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot on"></i><i class="dot"></i></span></div>
@@ -408,8 +477,8 @@
     <div>
       <h3><span class="en">Let's build something.</span><span class="ar">لنبنِ شيئاً معاً.</span></h3>
       <div class="foot-links">
-        <a class="btn btn-gold" href="https://wa.me/966536139108" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-inline-end:2px"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.53 15.26L2 22l4.85-1.42A10 10 0 1 0 12 2z"/></svg><span class="en">WhatsApp me</span><span class="ar">راسلني على واتساب</span></a>
-        <a class="btn btn-ghost" style="color:#EAF0F8;border-color:rgba(255,255,255,.2)" id="dlFoot" href="Abdelhak-Bejaoui-CV.pdf" download><span class="en">Download CV</span><span class="ar">تحميل السيرة</span></a>
+        <a class="btn btn-primary" href="https://wa.me/966536139108" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" style="margin-inline-end:2px"><path d="M17.5 14.4c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.14-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.22 3.08.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35zM12 2a10 10 0 0 0-8.53 15.26L2 22l4.85-1.42A10 10 0 1 0 12 2z"/></svg><span class="en">WhatsApp me</span><span class="ar">راسلني على واتساب</span></a>
+        <a class="btn btn-glass" id="dlFoot" href="Abdelhak-Bejaoui-CV.pdf" download><span class="en">Download CV</span><span class="ar">تحميل السيرة</span></a>
       </div>
     </div>
     <div class="built">
@@ -427,7 +496,6 @@
     h.setAttribute('lang', lang);
     h.setAttribute('dir', rtl ? 'rtl' : 'ltr');
     h.setAttribute('data-lang', lang);
-    // download links point to the matching PDF
     var pdf = rtl ? 'Abdelhak-Bejaoui-CV-AR.pdf' : 'Abdelhak-Bejaoui-CV.pdf';
     ['dlHero','dlFoot'].forEach(function(id){
       var el = document.getElementById(id); if(el) el.setAttribute('href', pdf);
@@ -441,11 +509,56 @@
     var cur = document.documentElement.getAttribute('data-lang') || 'en';
     applyLang(cur === 'en' ? 'ar' : 'en');
   }
+
   (function init(){
     var saved = 'en';
     try{ saved = localStorage.getItem('cvlang') || 'en'; }catch(e){}
     applyLang(saved);
     var y = document.getElementById('yr'); if(y) y.textContent = new Date().getFullYear();
+
+    var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced) return;
+    document.body.classList.add('anim');
+
+    // scroll reveal
+    if('IntersectionObserver' in window){
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+        });
+      }, { threshold:.12, rootMargin:'0px 0px -8% 0px' });
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+
+      // count-up for metrics
+      var cUp = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if(!e.isIntersecting) return;
+          var el = e.target, target = parseInt(el.textContent, 10) || 0, t0 = null, dur = 1300;
+          function step(ts){
+            if(!t0) t0 = ts;
+            var p = Math.min((ts - t0) / dur, 1);
+            var eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * eased);
+            if(p < 1) requestAnimationFrame(step);
+          }
+          requestAnimationFrame(step);
+          cUp.unobserve(el);
+        });
+      }, { threshold:.6 });
+      document.querySelectorAll('[data-count]').forEach(function(el){ cUp.observe(el); });
+    } else {
+      document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+    }
+
+    // spotlight follows pointer over the hero
+    var hero = document.getElementById('top'), spot = document.getElementById('heroSpot');
+    if(hero && spot && window.matchMedia('(pointer:fine)').matches){
+      hero.addEventListener('pointermove', function(ev){
+        var r = hero.getBoundingClientRect();
+        spot.style.setProperty('--mx', ((ev.clientX - r.left) / r.width * 100) + '%');
+        spot.style.setProperty('--my', ((ev.clientY - r.top) / r.height * 100) + '%');
+      });
+    }
   })();
 </script>
 </body>
